@@ -2784,9 +2784,9 @@ get_wm_theme() {
             fi
         ;;
 
-        E17|Enlightenment)
+        E17|Enlightenment|Moksha)
             if type -p eet >/dev/null; then
-                wm_theme=$(eet -d "$HOME/.e/e/config/standard/e.cfg" config |\
+                wm_theme=$(eet -d "$HOME/.e/e/config/$E_CONF_PROFILE/e.cfg" config |\
                             awk '/value \"file\" string.*.edj/ {print $4}')
                 wm_theme=${wm_theme##*/}
                 wm_theme=${wm_theme%.*}
