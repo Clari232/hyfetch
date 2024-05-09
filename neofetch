@@ -2798,7 +2798,6 @@ get_wm_theme() {
                 elm_profile=$(eet -x "$HOME/.elementary/config/profile.cfg" config)
                 wm_theme=$(eet -d "$HOME/.elementary/config/$elm_profile/base.cfg" config |\
                         awk '/value "theme" string.*/ {print $4}')
-                //wm_theme="${wm_theme%?}"
                 wm_theme=$(echo "$wm_theme" | awk -F: '{print $1}')
                 wm_theme=$(trim_quotes "$wm_theme")
             fi
