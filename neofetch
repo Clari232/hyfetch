@@ -2784,12 +2784,23 @@ get_wm_theme() {
             fi
         ;;
 
-        E17|Enlightenment|Moksha)
+        E17|Moksha)
             if type -p eet >/dev/null; then
                 wm_theme=$(eet -d "$HOME/.e/e/config/$E_CONF_PROFILE/e.cfg" config |\
                             awk '/value \"file\" string.*.edj/ {print $4}')
                 wm_theme=${wm_theme##*/}
                 wm_theme=${wm_theme%.*}
+                
+            fi
+        ;;
+            
+        Enlightenment)
+            if type -p eet >/dev/null; then
+                elm_profile=$(eet -x "$HOME/.elementary/config/profile.cfg" config)
+                wm_theme=$(eet -d "$HOME/.elementary/config/$elm_profile/base.cfg" config |\
+                        awk '/value \"theme\" string.*/ {print $4}')
+                wm_theme="${wm_theme%?}"
+                wm_theme=$(trim_quotes "$wm_theme")
             fi
         ;;
 
