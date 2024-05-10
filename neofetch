@@ -2736,6 +2736,7 @@ get_wm() {
     # Rename window managers to their proper values.
     [[ $wm == *WINDOWMAKER* ]] && wm=wmaker
     [[ $wm == *GNOME*Shell* ]] && wm=Mutter
+    [[ "$DESKTOP" == "Enlightenment-0.17.0" ]] && wm=E17
 
     wm_run=1
 }
